@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Posts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<nav th:replace="/../fragments/nav-bars :: nav" />
+<header th:replace="/../fragments/header-footer :: header" />
+<body>
+
+    <div th:each="post : ${posts}">
+        <form action="/post/1">
+            <h3 th:text="${post.title}"></h3></a>
+            <p th:text="${post.body}"></p>
+            <input type="hidden" th:value="${post.id}">
+            <button>submit</button>
+        </form>
+
+
+    </div>
+
+</body>
+<footer th:replace="/../fragments/header-footer :: footer" />
+
+</html>
