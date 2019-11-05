@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
 
+<nav th:replace="/fragments/nav-bars :: nav" />
+<header th:replace="fragments/header-footer :: header" />
+<body>
 <h1>This is the home page</h1>
 
+
 </body>
+<footer th:replace="/fragments/header-footer :: footer" />
 </html>

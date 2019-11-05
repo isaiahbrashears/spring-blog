@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>Dice</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
+<nav th:replace="/fragments/nav-bars :: nav" />
+<header th:replace="fragments/header-footer :: header" />
 <body>
 
     <h1>Guess what the dice will land on</h1>
@@ -19,15 +23,17 @@
     <div th:if="${guess != null}">
         <table>
             <tr>
-                <th>Your Guess</th>
-                <th>Actual Roll</th>
+                <th class="mr-2">Your Guess </th>
+                <th> Actual Roll</th>
             </tr>
             <tr>
                 <td th:text="${guess}"></td>
                 <td th:text="${dice}"></td>
             </tr>
         </table>
-        <h4 th:text="${msg}"></h4>
+        <p th:text="${msg}"></p>
     </div>
 </body>
+<footer th:replace="/fragments/header-footer :: footer" />
+
 </html>
