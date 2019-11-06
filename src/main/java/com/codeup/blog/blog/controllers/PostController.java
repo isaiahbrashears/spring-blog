@@ -25,8 +25,8 @@ public class PostController {
         vModel.addAttribute("posts", postDao.findAll());
 
         return "/posts/index";
-
     }
+
 
     @GetMapping("/posts/{id}")
     public String showIndividual(@PathVariable long id, Model vModel){
@@ -37,19 +37,31 @@ public class PostController {
         return "/posts/show";
     }
 
-    @GetMapping("/posts/{id}/delete")
+
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id){
 
         postDao.deleteById(id);
 
-        return "/posts/index";
+        return "redirect:/posts";
     }
 
-    @GetMapping("/posts/{id}/edit")
-    public String editPost(@PathVariable long id){
-        postDao.editPost("New Title", "I hope this works my dude!", id);
 
-        return "/posts/index";
+    @GetMapping("/posts/{id}/edit")
+    public String beginEdit(@PathVariable long id, Model vModel){
+
+        vModel.addAttribute("post", postDao.getOne(id));
+
+        return "/posts/edit" ;
+    }
+
+    @PostMapping ("/posts/{id}/edit")
+    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+
+            postDao.editPost(title, body, id);
+
+
+        return "redirect:/posts/" + id;
     }
 
 

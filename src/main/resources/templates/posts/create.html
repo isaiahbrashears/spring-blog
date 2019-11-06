@@ -5,23 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Posts</title>
+    <title>Create Post</title>
     <head th:replace="/../fragments/styling :: styling" />
 </head>
-<nav th:replace="/../fragments/nav-bars :: nav" />
-<header th:replace="/../fragments/header-footer :: header" />
 <body>
 
-    <div th:each="post : ${posts}">
-        <a th:href="@{/posts/} + ${post.id}">
-            <h3 th:text="${post.title}"></h3>
-        </a>
-            <p th:text="${post.body}"></p>
-            <input type="hidden" th:value="${post.id}">
-
-
-    </div>
-    <br><br>
+<h1>Create</h1>
+<form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
+    <label for="edit-title">Edit Title</label>
+    <input class="form-control mr-5" id="edit-title" name="title" type="text" "><br>
+    <label for="edit-body">Edit Body</label><br>
+    <textarea class="form-control" id="edit-body" name="body" type="text"></textarea>
+    <button>Edit</button>
+</form>
 
 </body>
 <footer th:replace="/../fragments/header-footer :: footer" />
