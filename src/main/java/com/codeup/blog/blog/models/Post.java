@@ -16,6 +16,8 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    public Post(){};
+
     public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;

@@ -14,12 +14,10 @@
 <body>
 
     <div th:each="post : ${posts}">
-        <form action="/post/1">
             <h3 th:text="${post.title}"></h3></a>
             <p th:text="${post.body}"></p>
             <input type="hidden" th:value="${post.id}">
-            <button>submit</button>
-        </form>
+
 
 
     </div>
