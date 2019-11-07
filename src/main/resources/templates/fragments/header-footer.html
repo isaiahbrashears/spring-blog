@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-
-<header th:fragment="header">
-    <div class="jumbotron jumbotron-fluid">
+<header th:fragment="home-header">
+    <div class="jumbotron bigotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Izzy's Blog</h1>
             <p class="lead">For all your blog needs.</p>
@@ -11,16 +10,39 @@
     </div>
 </header>
 
-<footer th:fragment="footer" class="fixed-bottom">
-
-    <div class="footer">
-        <p> The BBoC LLC 2019</p>
+<header th:fragment="main-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Izzy's Blog</h1>
+            <p class="lead">For all your blog needs.</p>
+        </div>
     </div>
+</header>
 
+<header th:fragment="edit-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Edit Post</h1>
+            <p class="lead">Sometimes you don't get it right until the second time around.</p>
+        </div>
+    </div>
+</header>
 
-    <th:block>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </th:block>
-</footer>
+<div th:fragment="footer" >
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class=" footer pt-1">
+        <div>
+            <p> BBOC© 2019</p>
+        </div>
+
+        <th:block>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </th:block>
+    </footer>
+
+</div>

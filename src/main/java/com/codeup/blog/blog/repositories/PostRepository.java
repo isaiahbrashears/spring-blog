@@ -11,6 +11,8 @@ import javax.transaction.Transactional;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
+
+
     @Transactional
     @Modifying
     @Query("update Post p set p.title = ?1, p.body = ?2 where p.id = ?3")
