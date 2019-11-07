@@ -17,6 +17,12 @@
     <h3 th:text="${post.title}"></h3></a>
     <p th:text="${post.body}"></p>
     <input type="hidden" th:value="${post.id}">
+
+    <div th:each="post : ${posts}" class="container">
+
+    </div>
+
+    <img th:src="${post.image}" alt="">
     <a th:href="@{/posts/} + ${post.id} + '/edit'">Edit Post</a>
 
 
