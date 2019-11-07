@@ -1,6 +1,7 @@
 package com.codeup.blog.blog.controllers;
 
 import com.codeup.blog.blog.models.Post;
+import com.codeup.blog.blog.models.PostDetails;
 import com.codeup.blog.blog.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -62,6 +63,18 @@ public class PostController {
 
 
         return "redirect:/posts/" + id;
+    }
+
+    @GetMapping("posts/{id}/history")
+    public String postHistory(@PathVariable long id, Model vModel){
+       Post post = postDao.getOne(id);
+
+        PostDetails pd = post.getPostDetails();
+
+        vModel.addAttribute("pd", pd);
+
+        return "/posts/history";
+
     }
 
 
