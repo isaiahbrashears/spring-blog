@@ -8,9 +8,9 @@
     <title>Edit Post</title>
     <head th:replace="/../fragments/styling :: styling" />
 </head>
+<nav th:replace="/../fragments/nav-bars :: nav" />
+<header th:replace="/../fragments/header-footer :: edit-header" />
 <body>
-
-<h1>EDIT</h1>
     <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
         <label for="edit-title">Edit Title</label>
         <input class="form-control mr-5" id="edit-title" name="title" type="text" th:value="${post.title}"><br>
@@ -24,6 +24,7 @@
     </form>
 
 </body>
+
 <footer th:replace="/../fragments/header-footer :: footer" />
 
 </html>

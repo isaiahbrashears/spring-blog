@@ -9,21 +9,22 @@
     <head th:replace="/../fragments/styling :: styling" />
 </head>
 <nav th:replace="/../fragments/nav-bars :: nav" />
-<header th:replace="/../fragments/header-footer :: header" />
+<header th:replace="/../fragments/header-footer :: main-header" />
 <body>
 
-    <div th:each="post : ${posts}">
-        <a th:href="@{/posts/} + ${post.id}">
-            <h3 th:text="${post.title}"></h3>
-        </a>
-            <p th:text="${post.body}"></p>
+    <div th:each="post : ${posts}" class="container">
+        <div class="card w-100 mt-2 mb-4">
+            <div class="card-body">
+                <a class="card-title" th:href="@{/posts/} + ${post.id}">
+                    <h5 th:text="${post.title}"></h5>
+                </a>
+                <p>username</p>
+            </div>
+        </div>
+            <input type="hidden" th:value="${post.body}"/>
             <input type="hidden" th:value="${post.id}">
-
-
     </div>
-    <br><br>
 
 </body>
 <footer th:replace="/../fragments/header-footer :: footer" />
-
 </html>

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<nav th:fragment="nav" class="nav">
-    <a class="nav-link " href="/">HOME</a>
-    <a class="nav-link" href="/posts">BLOG POSTS</a>
-</nav>
+<div th:fragment="nav">
+    <nav class="nav" >
+        <a class="nav-link " href="/">HOME</a>
+        <a class="nav-link" href="/posts">BLOG POSTS</a>
+        <a class="nav-link ml-auto" href="#">LOGIN</a>
+    </nav>
+    <br>
+</div>
