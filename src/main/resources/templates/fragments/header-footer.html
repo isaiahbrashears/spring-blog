@@ -19,6 +19,15 @@
     </div>
 </header>
 
+<header th:fragment="individual-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4"> <span th:text="${post.user.username}"></span>'s Post</h1>
+            <p class="lead">Everyone has something to say about something.</p>
+        </div>
+    </div>
+</header>
+
 <header th:fragment="edit-header">
     <div class="jumbotron smallotron jumbotron-fluid">
         <div class="container">

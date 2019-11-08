@@ -18,6 +18,9 @@ public class Post {
     private String body;
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Image> images;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public List<Image> getImages() {
         return images;
@@ -29,10 +32,11 @@ public class Post {
 
     public Post(){};
 
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -57,5 +61,13 @@ public class Post {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

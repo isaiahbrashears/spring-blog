@@ -1,16 +1,19 @@
 
 use spring_blog_db;
 
-insert into posts (title, body) values ('garfield', 'he hates mondays for some reason? hes a cat so it doesnt even make sense');
-insert into posts (title, body) values ('tabby the cat', 'he fluffy or whatever');
-insert into posts (title, body) values ('Or (a.k.a. My Treasure)', 'Cross-group secondary access');
-insert into posts (title, body) values ('Hotel Very Welcome', 'Optional optimal matrices');
-insert into posts (title, body) values ('Italian for Beginners (Italiensk for begyndere)', 'Versatile modular definition');
-insert into posts (title, body) values ('Knucklehead', 'Focused zero defect projection');
-insert into posts (title, body) values ('Johnny Express', 'Sharable client-driven parallelism');
-insert into posts (title, body) values ('Unknown White Male', 'Total radical system engine');
-insert into posts (title, body) values ('Sugar Curtain, The (El telón de azúcar)', 'Robust bi-directional projection');
-insert into posts (title, body) values ('Golem', 'Customizable static access');
+insert into users (username, email, password) values ('Izzy', 'izzy@mail.com', 'password');
+insert into users (username, email, password) values ('Derek Miller', 'derekcool@mail.com', 'password');
+
+insert into posts (user_id, title, body) values (1,'garfield', 'he hates mondays for some reason? hes a cat so it doesnt even make sense');
+insert into posts (user_id, title, body) values (1,'tabby the cat', 'he fluffy or whatever');
+insert into posts (user_id, title, body) values (2,'Or (a.k.a. My Treasure)', 'Cross-group secondary access');
+insert into posts (user_id, title, body) values (2,'Hotel Very Welcome', 'Optional optimal matrices');
+insert into posts (user_id, title, body) values (1,'Italian for Beginners (Italiensk for begyndere)', 'Versatile modular definition');
+insert into posts (user_id, title, body) values (1,'Knucklehead', 'Focused zero defect projection');
+insert into posts (user_id, title, body) values (2,'Johnny Express', 'Sharable client-driven parallelism');
+insert into posts (user_id, title, body) values (2,'Unknown White Male', 'Total radical system engine');
+insert into posts (user_id, title, body) values (1,'Sugar Curtain, The (El telón de azúcar)', 'Robust bi-directional projection');
+insert into posts (user_id, title, body) values (1,'Golem', 'Customizable static access');
 
 
 
