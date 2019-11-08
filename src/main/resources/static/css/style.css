@@ -53,8 +53,12 @@ nav a{
     background-color: #f5f5f5;
 }
 
+.card h2{
+    color: #273043;
+}
+
 .card a{
-    color: #F02D3A;
+    color: #273043;
 }
 
 .footer {
@@ -64,3 +68,6 @@ nav a{
     background-color: #9197AE;
     color: #EFF6EE ;
 }
+
+
+

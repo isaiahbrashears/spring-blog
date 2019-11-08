@@ -7,22 +7,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Post</title>
     <head th:replace="/../fragments/styling :: styling" />
+    <head th:replace="/../fragments/styling :: extra-style" />
+
 </head>
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: edit-header" />
 <body>
-    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
-        <label for="edit-title">Edit Title</label>
-        <input class="form-control mr-5" id="edit-title" name="title" type="text" th:value="${post.title}"><br>
-        <label for="edit-body">Edit Body</label><br>
-        <textarea class="form-control" id="edit-body" name="body" type="text" th:text="${post.body}"></textarea>
-        <input type="hidden" name="id" th:value="${post.id}">
-        <button>Edit</button>
-    </form>
-    <form th:action="@{'/posts/'+ ${post.id} +'/delete'}" method="post">
-        <button>Delete</button>
-    </form>
 
+<div class="container">
+    <div class="card w-100 mt-2 mb-4">
+        <div class="widthy">
+            <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
+                <label for="edit-title"><h4 class="dark-font mt-3">Edit Title</h4></label>
+                <input class=" form-control" id="edit-title" name="title" type="text" th:value="${post.title}"><br>
+                <label for="edit-body"><h4 class="dark-font">Edit Body</h4></label><br>
+                <textarea class="form-control  " id="edit-body" name="body" type="text" th:text="${post.body}"></textarea>
+                <input type="hidden" name="id" th:value="${post.id}">
+                <button class="btn btn-edit form-control mt-3">Edit</button>
+            </form>
+            <a data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${post.id }"><button class="btn btn-delete form-control mb-2 mt-1">Delete</button></a>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Modal -->
+    <div class="modal modal-warning fade in" th:id="modal-warning+${post.id }" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Are you sure want to delete this post?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                    <form th:action="@{/posts/{id}/delete/(id=${post.id})}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal   -->
 </body>
 
 <footer th:replace="/../fragments/header-footer :: footer" />

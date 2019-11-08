@@ -1,0 +1,19 @@
+
+.widthy{
+    margin: 0 auto;
+    width: 95%;
+}
+
+.btn-edit{
+    background-color: #273043 !important;
+    color: whitesmoke;
+}
+
+.btn-delete{
+    background-color: #F02D3A !important;
+    color: whitesmoke;
+}
+
+.dark-font{
+    color: #273043;
+}
