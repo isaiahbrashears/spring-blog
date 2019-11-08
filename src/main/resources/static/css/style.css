@@ -20,6 +20,10 @@ nav a{
     color: #EFF6EE;
 }
 
+nav a:hover{
+    color: #9197AE;
+}
+
 .jumbotron{
     background: url("../img/backy.jpg") no-repeat center center;
     -webkit-background-size: 100% 100%;

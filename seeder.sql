@@ -1,4 +1,5 @@
 
+
 use spring_blog_db;
 
 insert into users (username, email, password) values ('Izzy', 'izzy@mail.com', 'password');

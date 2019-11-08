@@ -5,12 +5,22 @@
 }
 
 .btn-edit{
-    background-color: #273043 !important;
+     background-color: #273043 !important;
+     color: whitesmoke;
+ }
+
+.btn-edit:hover{
+    background-color: #23305F !important;
     color: whitesmoke;
 }
 
 .btn-delete{
-    background-color: #F02D3A !important;
+    background-color: #F02D3A  !important;
+    color: whitesmoke;
+}
+
+.btn-delete:hover{
+    background-color: #F52D12 !important;
     color: whitesmoke;
 }
 

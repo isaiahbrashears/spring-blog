@@ -19,10 +19,9 @@
         <div class="card w-100 mt-2 mb-4">
             <div class="card-body">
                 <h2 class="card-title red-font" th:text="${post.title}"></h2></a>
-                <p th:text="${post.body}" class="widthy mb-4"></p>
+                <p th:text="${post.body}" class="widthy dark-font mb-4"></p>
                 <input type="hidden" th:value="${post.id}">
-                <p class="light-font">test</p>
-                <p th:text="${post.user.email}" class="red-font text-right"></p>
+                <p th:text="${post.user.email}" class="light-font text-right"></p>
                 <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
             </div>
         </div>
