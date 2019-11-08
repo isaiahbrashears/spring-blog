@@ -7,20 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Post</title>
     <head th:replace="/../fragments/styling :: styling" />
+    <head th:replace="/../fragments/styling :: extra-style" />
+
 
 </head>
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: main-header" />
 <body>
 <div>
+    <div class="container">
+        <div class="card w-100 mt-2 mb-4">
+            <div class="card-body">
+                <h2 class="card-title" th:text="${post.title}"></h2></a>
+                <p th:text="${post.body}" class="widthy mb-4"></p>
+                <input type="hidden" th:value="${post.id}">
+                <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
+            </div>
+        </div>
+    </div>
 
-    <h3 th:text="${post.title}"></h3></a>
-    <p th:text="${post.body}"></p>
-    <input type="hidden" th:value="${post.id}">
-    <a th:href="@{/posts/} + ${post.id} + '/edit'">Edit Post</a>
+
+
 
 
 </div>
 </body>
 <footer th:replace="/../fragments/header-footer :: footer" />
+<script>
+</script>
 </html>
