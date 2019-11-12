@@ -21,7 +21,7 @@
                 <label for="title"><h4 class="dark-font mt-3">Title</h4></label>
                 <input class=" form-control"  type="text" th:field="*{title}"><br>
                 <label for="body"><h4 class="dark-font">Body</h4></label><br>
-                <textarea class="form-control"  type="text" th:field="*{body}" ></textarea>
+                <textarea class="form-control" rows="18" type="text" th:field="*{body}" ></textarea>
                 <p class="red-font" th:text="${missing}"></p>
                 <button class="btn btn-edit form-control mt-3 mb-2">Submit</button>
             </form>

@@ -124,3 +124,7 @@ nav a:hover{
 .light-font{
     color: #9197AE;
 }
+
+#body{
+    white-space: pre-wrap;
+}
