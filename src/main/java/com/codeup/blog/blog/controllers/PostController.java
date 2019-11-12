@@ -52,7 +52,7 @@ public class PostController {
 
 
     @GetMapping("/posts/{id}/edit")
-    public String beginEdit(@PathVariable long id, Model vModel){
+    public String beginEdit(@PathVariable long id, Model vModel, @ModelAttribute String missing){
 
         vModel.addAttribute("post", postDao.getOne(id));
 
@@ -60,27 +60,47 @@ public class PostController {
     }
 
     @PostMapping ("/posts/{id}/edit")
-    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+    public String editPost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model vModel){
 
+        if (title.isEmpty() || body.isEmpty()) {
+            return "redirect:/posts/" +id + "/edit";
+        }else {
             postDao.editPost(title, body, id);
+            return "redirect:/posts/" + id;
+        }
 
 
-        return "redirect:/posts/" + id;
+
     }
 
 
     @GetMapping("/posts/create")
-    public String view(Model vModel) {
+    public String view(Model vModel, @ModelAttribute String missing) {
         vModel.addAttribute("post", new Post());
+
+        if (missing != null){
+            vModel.addAttribute("missing", missing);
+        }
+
+
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
-    public String create(@ModelAttribute Post post){
-        post.setUser(userDao.getOne(1L));
-        Post savedPost = postDao.save(post);
 
-        return "redirect:/posts/" +  savedPost.getId();
+
+    @PostMapping("/posts/create")
+    public String create(@ModelAttribute Post post, Model vModel){
+
+        if (post.getTitle().isEmpty() || post.getBody().isEmpty()){
+            vModel.addAttribute("missing", "Please fill out all forms");
+            return "/posts/create";
+        }else{
+            post.setUser(userDao.getOne(1L));
+            Post savedPost = postDao.save(post);
+            return "redirect:/posts/" +  savedPost.getId();
+        }
+
+
     }
 
 

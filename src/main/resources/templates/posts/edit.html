@@ -23,6 +23,7 @@
                 <label for="edit-body"><h4 class="dark-font">Edit Body</h4></label><br>
                 <textarea class="form-control  " id="edit-body" name="body" type="text" th:text="${post.body}"></textarea>
                 <input type="hidden" name="id" th:value="${post.id}">
+                <p class="red-font" th:text="${missing}"></p>
                 <button class="btn btn-edit form-control mt-3">Save Changes</button>
             </form>
             <a data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${post.id }"><button class="btn btn-delete form-control mb-2 mt-1">Delete</button></a>
