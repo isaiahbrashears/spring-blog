@@ -18,8 +18,9 @@ public class PostController {
         private UserRepository userDao;
 
 
-    public PostController(PostRepository postDao) {
-        this.postDao = postDao;
+    public PostController(PostRepository postDao, UserRepository userDao ){
+    this.postDao = postDao;
+    this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -69,15 +70,17 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String view(){
-        return "view the form for creating a post";
+    public String view(Model vModel) {
+        vModel.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String create(@RequestParam long id){
-        return "create a new post";
+    public String create(@ModelAttribute Post post){
+        post.setUser(userDao.getOne(1L));
+        Post savedPost = postDao.save(post);
+
+        return "redirect:/posts/" +  savedPost.getId();
     }
 
 

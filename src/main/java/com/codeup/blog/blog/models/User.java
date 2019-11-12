@@ -8,7 +8,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(nullable = false, columnDefinition = "VARCHAR(80)")
     private String username;
     @Column(nullable = false, columnDefinition = "VARCHAR(200)")
@@ -28,11 +28,11 @@ public class User {
         this.posts = posts;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

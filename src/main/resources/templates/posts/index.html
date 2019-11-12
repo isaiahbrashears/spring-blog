@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Posts</title>
     <head th:replace="/../fragments/styling :: styling" />
-    <head th:replace="/../fragments/styling :: extra-style" />
 </head>
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: main-header" />
@@ -19,7 +18,7 @@
                 <a class="card-title" th:href="@{/posts/} + ${post.id}">
                     <h5 class="red-font" th:text="${post.title}"></h5>
                 </a>
-                <p class="dark-font">by <span th:text="${post.user.username}"/></p>
+                <p class="dark-font ml-1">by <span th:text="${post.user.username}"/></p>
             </div>
         </div>
             <input type="hidden" th:value="${post.body}"/>
