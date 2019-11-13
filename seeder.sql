@@ -24,8 +24,19 @@ insert into images (title, url, post_id) values ('cat 3', 'https://i.kym-cdn.com
 
 INSERT INTO tags (name) VALUES ('Funny');
 INSERT INTO tags (name) VALUES ('Silly');
-INSERT INTO tags (name) VALUES ('Serious');
-INSERT INTO tags (name) VALUES ('Dog Stuff');
+INSERT INTO tags (name) VALUES ('Dark Humor');
+INSERT INTO tags (name) VALUES ('Shower Thoughts');
+INSERT INTO tags (name) VALUES ('Mildly Interesting');
+INSERT INTO tags (name) VALUES ('Interesting');
+INSERT INTO tags (name) VALUES ('Pets');
+INSERT INTO tags (name) VALUES ('Friends');
+INSERT INTO tags (name) VALUES ('Jokes');
+INSERT INTO tags (name) VALUES ('Automotive');
+INSERT INTO tags (name) VALUES ('Fitness');
+INSERT INTO tags (name) VALUES ('Health');
+INSERT INTO tags (name) VALUES ('Food');
+INSERT INTO tags (name) VALUES ('Cute');
+
 
 insert into post_tag (post_id, tag_id) values (1, 1);
 insert into post_tag (post_id, tag_id) values (1, 2);
