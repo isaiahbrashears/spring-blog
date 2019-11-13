@@ -7,37 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Post</title>
     <head th:replace="/../fragments/styling :: styling" />
-    <head th:replace="/../fragments/styling :: extra-style" />
-
-
 </head>
+
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: individual-header" />
+
+
+<!--INDIVIDUAL POST-->
 <body>
-<div>
-    <div class="container">
-        <div class="card w-100 mt-2 mb-4">
-            <div class="card-body">
-                <h2 class="card-title red-font" th:text="${post.title}"></h2></a>
-                <p th:text="${post.body}" class="widthy dark-font mb-4"></p>
-                <input type="hidden" th:value="${post.id}">
-                <ul th:each="tag : ${post.tags}">
-                    <li th:text="${tag.name}"></li>
-                    <li th:text="${post.user.email}" class="light-font text-right">></li>
-                </ul>
-<!--                <p th:text="${post.user.email}" class="light-font text-right"></p>-->
-                <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
+    <div>
+        <div class="container">
+            <div class="card w-100 mt-2 mb-4">
+                <div class="card-body">
+                    <h2 class="card-title red-font" th:text="${post.title}"></h2></a>
+                    <p id="body" th:text="${post.body}" class="widthy dark-font mb-4"></p>
+                    <input type="hidden" th:value="${post.id}">
+
+                    <th:block th:if="${#authentication.principal.id == post.user.id || #authentication.principal.id == 1}">
+                        <p th:text="${post.user.email}" class="light-font text-right"></p>
+                        <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
+                    </th:block>
+                </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-</div>
 </body>
+
 <footer th:replace="/../fragments/header-footer :: footer" />
-<script>
-</script>
 </html>

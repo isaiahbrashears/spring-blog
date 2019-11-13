@@ -8,10 +8,10 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(nullable = false, columnDefinition = "VARCHAR(80)")
+    private long id;
+    @Column(nullable = false, columnDefinition = "VARCHAR(80)", unique = true)
     private String username;
-    @Column(nullable = false, columnDefinition = "VARCHAR(200)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(200)", unique = true)
     private String email;
     @Column(nullable = false, columnDefinition = "VARCHAR(250)")
     private String password;
@@ -28,11 +28,18 @@ public class User {
         this.posts = posts;
     }
 
-    public int getId() {
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

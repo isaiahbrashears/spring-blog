@@ -2,19 +2,21 @@
 
 use spring_blog_db;
 
-insert into users (username, email, password) values ('Izzy', 'izzy@mail.com', 'password');
-insert into users (username, email, password) values ('Derek Miller', 'derekcool@mail.com', 'password');
+insert into users (username, email, password) values ('Admin', 'Admin@mail.com', '$2a$10$69d3IuFQSt2QpgIVM615ku9tz0Rhr7DFO4OBYP5HkV50mXnyius3C');
+insert into users (username, email, password) values ('DerekMiller', 'derekcool@mail.com', 'password');
+insert into users (username, email, password) values ('IzzyB', 'izzy@mail.com', 'password');
 
 insert into posts (user_id, title, body) values (1,'garfield', 'he hates mondays for some reason? hes a cat so it doesnt even make sense');
-insert into posts (user_id, title, body) values (1,'tabby the cat', 'he fluffy or whatever');
+insert into posts (user_id, title, body) values (3,'tabby the cat', 'he fluffy or whatever');
 insert into posts (user_id, title, body) values (2,'Or (a.k.a. My Treasure)', 'Cross-group secondary access');
 insert into posts (user_id, title, body) values (2,'Hotel Very Welcome', 'Optional optimal matrices');
-insert into posts (user_id, title, body) values (1,'Italian for Beginners (Italiensk for begyndere)', 'Versatile modular definition');
-insert into posts (user_id, title, body) values (1,'Knucklehead', 'Focused zero defect projection');
-insert into posts (user_id, title, body) values (2,'Johnny Express', 'Sharable client-driven parallelism');
+insert into posts (user_id, title, body) values (3,'Italian for Beginners (Italiensk for begyndere)', 'Versatile modular definition');
+insert into posts (user_id, title, body) values (2,'Knucklehead', 'Focused zero defect projection');
+insert into posts (user_id, title, body) values (3,'Johnny Express', 'Sharable client-driven parallelism');
 insert into posts (user_id, title, body) values (2,'Unknown White Male', 'Total radical system engine');
 insert into posts (user_id, title, body) values (1,'Sugar Curtain, The (El telón de azúcar)', 'Robust bi-directional projection');
 insert into posts (user_id, title, body) values (1,'Golem', 'Customizable static access');
+
 
 
 insert into images (title, url, post_id) values ('cat 1', 'https://pmcvariety.files.wordpress.com/2019/08/garfield-e1565072358875.jpg?w=1000&h=563&crop=1' ,1);
@@ -49,5 +51,6 @@ insert into post_tag (post_id, tag_id) values (3, 4);
 insert into post_tag (post_id, tag_id) values (4, 1);
 insert into post_tag (post_id, tag_id) values (5, 2);
 insert into post_tag (post_id, tag_id) values (6, 1);
+
 
 

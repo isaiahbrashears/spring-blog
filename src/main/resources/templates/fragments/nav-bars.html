@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="nav">
     <nav class="nav" >
         <a class="nav-link " href="/">HOME</a>
-        <a class="nav-link" href="/posts">BLOG POSTS</a>
-        <a class="nav-link ml-auto" href="#">LOGIN</a>
+        <a class="nav-link" href="/posts">POSTS</a>
+        <a class="nav-link" href="/posts/create">CREATE</a>
+        <th:block sec:authorize="isAnonymous()" >
+            <a class="nav-link ml-auto" href="/sign-up">SIGN UP</a>
+            <a class="nav-link" href="/login">LOGIN</a>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()" >
+            <form class="nav-link ml-auto " th:action="@{/logout}" th:method="post">
+                <button type="submit" class="btn-edit no-border" >LOGOUT</button>
+            </form>
+        </th:block>
+
     </nav>
     <br>
 </div>
