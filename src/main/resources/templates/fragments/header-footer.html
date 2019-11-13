@@ -73,6 +73,15 @@
     </div>
 </header>
 
+<header th:fragment="tag-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4" th:text="${tag.name}"></h1>
+            <p class="lead">all the posts with the <span th:text="${tag.name}"></span> tag.</p>
+        </div>
+    </div>
+</header>
+
 <div th:fragment="footer" >
     <br>
     <br>

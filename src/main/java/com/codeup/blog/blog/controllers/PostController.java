@@ -1,8 +1,10 @@
 package com.codeup.blog.blog.controllers;
 
 import com.codeup.blog.blog.models.Post;
+import com.codeup.blog.blog.models.Tag;
 import com.codeup.blog.blog.models.User;
 import com.codeup.blog.blog.repositories.PostRepository;
+import com.codeup.blog.blog.repositories.TagRepository;
 import com.codeup.blog.blog.repositories.UserRepository;
 import com.codeup.blog.blog.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,19 +14,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
 
         private PostRepository postDao;
         private UserRepository userDao;
+        private TagRepository tagDao;
         private EmailService emailService;
 
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService ){
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService, TagRepository tagDao ){
     this.postDao = postDao;
     this.userDao = userDao;
     this.emailService = emailService;
+    this.tagDao = tagDao;
     }
 
     @GetMapping("/posts")
@@ -104,10 +109,26 @@ public class PostController {
             emailService.prepareAndSend(savedPost, "New Post", "Congrats, your post has been created.");
             return "redirect:/posts/" +  savedPost.getId();
         }
-
-
     }
 
+
+    @GetMapping("/posts/tags/{id}")
+    public String searchTag(@PathVariable long id, Model vModel){
+
+        List<Post> posts = new ArrayList<>();
+
+        for (Tag tag: tagDao.findAll() ) {
+            if (tag.getId() == id){
+                vModel.addAttribute("tag", tag);
+                for (Post post : tag.getPosts()) {
+                    posts.add(post);
+                }
+            }
+        }
+
+        vModel.addAttribute("posts", posts);
+        return "/posts/tag";
+    }
 
 }
 

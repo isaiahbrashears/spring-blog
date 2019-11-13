@@ -132,3 +132,11 @@ nav a:hover{
 .no-border{
     border: none;
 }
+
+.small-font{
+    font-size: .8em;
+}
+
+.not-real-nav{
+    height: 32px;
+}

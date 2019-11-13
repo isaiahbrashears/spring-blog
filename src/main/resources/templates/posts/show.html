@@ -21,8 +21,13 @@
                 <h2 class="card-title red-font" th:text="${post.title}"></h2></a>
                 <p id="body" th:text="${post.body}" class="widthy dark-font mb-4"></p>
                 <input type="hidden" th:value="${post.id}">
+                <ul class="nav not-real-nav">
+                    <th:block th:each="tag : ${post.tags}">
+                        <a th:href="@{/posts/tags/} + ${tag.id}" class="nav-link light-font small-font" >[<span class="light-font" th:text="${tag.name}" ></span>]</a>
+                    </th:block>
+                    <p  th:text="${post.user.email}" class=" nav-link light-font ml-auto"></p>
+                </ul>
                 <th:block th:if="${#authentication.principal.id == post.user.id || #authentication.principal.id == 1}">
-                    <p th:text="${post.user.email}" class="light-font text-right"></p>
                     <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
                 </th:block>
             </div>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Posts by Tag</title>
+    <head th:replace="/../fragments/styling :: styling" />
+</head>
+<nav th:replace="/../fragments/nav-bars :: nav" />
+<header th:replace="/../fragments/header-footer :: tag-header" />
+
+<!--INDIVIDUAL TAGS-->
+<body>
+    <div th:each="post : ${posts}" class="container">
+        <div class="card w-100 mt-2 mb-4">
+            <div class="card-body">
+                <a class="card-title" th:href="@{/posts/} + ${post.id}">
+                    <h5 class="red-font" th:text="${post.title}"></h5>
+                </a>
+                <p class="dark-font ml-1">by <span th:text="${post.user.username}"/></p>
+            </div>
+        </div>
+        <input type="hidden" th:value="${post.body}"/>
+        <input type="hidden" th:value="${post.id}">
+    </div>
+</body>
+<footer th:replace="/../fragments/header-footer :: footer" />
+</html>

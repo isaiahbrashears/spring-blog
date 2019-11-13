@@ -11,27 +11,24 @@
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: create-header" />
 
-
+<!--CREATE NEW POST FORM-->
 <body>
+    <div class="container">
+        <div class="card w-100 mt-2 mb-4">
+            <div class="widthy">
+                <form th:action="@{'/posts/create'}" th:method="post" th:object="${post}" >
+                    <label for="title"><h4 class="dark-font  mt-3" >Title</h4></label>
+                    <input class=" form-control"  th:autocomplete="off" type="text" th:field="*{title}"><br>
 
+                    <label for="body"><h4 class="dark-font">Body</h4></label><br>
+                    <textarea class="form-control" rows="18" type="text" th:field="*{body}" ></textarea>
 
-<div class="container">
-    <div class="card w-100 mt-2 mb-4">
-        <div class="widthy">
-            <form th:action="@{'/posts/create'}" th:method="post" th:object="${post}" >
-                <label for="title"><h4 class="dark-font  mt-3" >Title</h4></label>
-                <input class=" form-control"  th:autocomplete="off" type="text" th:field="*{title}"><br>
-
-                <label for="body"><h4 class="dark-font">Body</h4></label><br>
-                <textarea class="form-control" rows="18" type="text" th:field="*{body}" ></textarea>
-
-                <p class="red-font" th:text="${missing}"></p>
-                <button class="btn btn-edit form-control mt-3 mb-2">Submit</button>
-            </form>
+                    <p class="red-font" th:text="${missing}"></p>
+                    <button class="btn btn-edit form-control mt-3 mb-2">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
 </body>
 <footer th:replace="/../fragments/header-footer :: footer" />
 
