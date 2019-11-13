@@ -23,7 +23,7 @@
     <div class="jumbotron smallotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4"> <span th:text="${post.user.username}"></span>'s Post</h1>
-            <p class="lead">Everyone has something to say about something and something <span th:text="${post.user.username}"></span> had to say, was this:</p>
+            <p class="lead">Everyone has something to say about something and the thing <span th:text="${post.user.username}"></span> had to say, was this:</p>
         </div>
     </div>
 </header>
@@ -42,6 +42,24 @@
         <div class="container">
             <h1 class="display-4">Oopsie Poopsie!</h1>
             <p class="lead">Something went wrong! Not saying it's your fault, but it was working before...</p>
+        </div>
+    </div>
+</header>
+
+<header th:fragment="login-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Login</h1>
+            <p class="lead">Let's see some credentials.</p>
+        </div>
+    </div>
+</header>
+
+<header th:fragment="register-header">
+    <div class="jumbotron smallotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Register</h1>
+            <p class="lead">Great, another username and password to remember.</p>
         </div>
     </div>
 </header>
