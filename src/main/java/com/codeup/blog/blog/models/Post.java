@@ -18,6 +18,8 @@ public class Post {
     private String body;
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Image> images;
+    @ManyToMany(mappedBy = "posts")
+    private List<Tag> tags;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -30,7 +32,7 @@ public class Post {
         this.images = images;
     }
 
-    public Post(){};
+    public Post(){}
 
     public Post(long id, String title, String body, User user) {
         this.id = id;
@@ -69,5 +71,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }
