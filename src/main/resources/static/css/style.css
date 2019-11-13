@@ -128,3 +128,7 @@ nav a:hover{
 #body{
     white-space: pre-wrap;
 }
+
+.no-border{
+    border: none;
+}

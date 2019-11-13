@@ -5,6 +5,7 @@ import com.codeup.blog.blog.models.User;
 import com.codeup.blog.blog.repositories.PostRepository;
 import com.codeup.blog.blog.repositories.UserRepository;
 import com.codeup.blog.blog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -93,12 +94,12 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post, Model vModel){
-
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (post.getTitle().isEmpty() || post.getBody().isEmpty()){
             vModel.addAttribute("missing", "Please fill out all forms");
             return "/posts/create";
         }else{
-            post.setUser(userDao.getOne(1L));
+            post.setUser(userDao.getOne(user.getId()));
             Post savedPost = postDao.save(post);
             emailService.prepareAndSend(savedPost, "New Post", "Congrats, your post has been created.");
             return "redirect:/posts/" +  savedPost.getId();

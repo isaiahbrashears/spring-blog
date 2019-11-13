@@ -20,8 +20,11 @@
                 <h2 class="card-title red-font" th:text="${post.title}"></h2></a>
                 <p id="body" th:text="${post.body}" class="widthy dark-font mb-4"></p>
                 <input type="hidden" th:value="${post.id}">
-                <p th:text="${post.user.email}" class="light-font text-right"></p>
-                <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
+
+                <th:block th:if="${#authentication.principal.id == post.user.id}">
+                    <p th:text="${post.user.email}" class="light-font text-right"></p>
+                    <a th:href="@{/posts/} + ${post.id} + '/edit'"><button class=" form-control btn btn-edit mb-2">Edit Post</button></a>
+                </th:block>
             </div>
         </div>
     </div>

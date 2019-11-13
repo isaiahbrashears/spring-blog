@@ -20,16 +20,34 @@ public class UserController {
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model, @ModelAttribute String missing, @ModelAttribute String takenUsername ){
         model.addAttribute("user", new User());
+
+        if (takenUsername != null){
+            model.addAttribute("takenUsername", takenUsername);
+        }
+
+        if (missing != null){
+            model.addAttribute("missing", missing);
+        }
         return "users/sign-up";
     }
 
-    @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
+    @PostMapping("/users/sign-up")
+    public String saveUser(@ModelAttribute User user, Model vModel){
+        if (userDao.findByUsername(user.getUsername()) != null){
+            vModel.addAttribute("takenUsername", "Username already taken chief. ");
+            return "/users/sign-up";
+
+        } else if (user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getUsername().isEmpty()){
+            vModel.addAttribute("missing", "Please fill out all forms." );
+            return "/users/sign-up";
+        }else {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            userDao.save(user);
+            return "redirect:/login";
+
+        }
     }
 }
