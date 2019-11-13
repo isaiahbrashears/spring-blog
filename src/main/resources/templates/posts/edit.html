@@ -12,30 +12,36 @@
 </head>
 <nav th:replace="/../fragments/nav-bars :: nav" />
 <header th:replace="/../fragments/header-footer :: edit-header" />
-<body>
 
-<th:block th:if="${#authentication.principal.id == post.user.id}">
-    <div class="container">
-        <div class="card w-100 mt-2 mb-4">
-            <div class="widthy">
-                <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
-                    <label for="edit-title"><h4 class="dark-font mt-3">Edit Title</h4></label>
-                    <input class=" form-control" id="edit-title" name="title" type="text" th:value="${post.title}"><br>
-                    <label for="edit-body"><h4 class="dark-font">Edit Body</h4></label><br>
-                    <textarea class="form-control" rows="18" id="edit-body" name="body" type="text" th:text="${post.body}"></textarea>
-                    <input type="hidden" name="id" th:value="${post.id}">
-                    <p class="red-font" th:text="${missing}"></p>
-                    <button class="btn btn-edit form-control mt-3">Save Changes</button>
-                </form>
-                <a data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${post.id }"><button class="btn btn-delete form-control mb-2 mt-1">Delete</button></a>
+
+<!--EDIT/DELETE POST-->
+<body>
+    <th:block th:if="${#authentication.principal.id == post.user.id || #authentication.principal.id == 1}">
+        <div class="container">
+            <div class="card w-100 mt-2 mb-4">
+                <div class="widthy">
+                    <form th:action="@{'/posts/'+ ${post.id} +'/edit'}" method="post" >
+                        <label for="edit-title"><h4 class="dark-font mt-3">Edit Title</h4></label>
+                        <input class=" form-control" id="edit-title" name="title" type="text" th:value="${post.title}"><br>
+
+                        <label for="edit-body"><h4 class="dark-font">Edit Body</h4></label><br>
+                        <textarea class="form-control" rows="18" id="edit-body" name="body" type="text" th:text="${post.body}"></textarea>
+
+                        <input type="hidden" name="id" th:value="${post.id}">
+                        <p class="red-font" th:text="${missing}"></p>
+
+                        <button class="btn btn-edit form-control mt-3">Save Changes</button>
+                    </form>
+                    <a data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${post.id }">
+                        <button class="btn btn-delete form-control mb-2 mt-1">Delete</button>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</th:block>
+    </th:block>
 
 
-
-    <!-- Modal -->
+    <!-- MODAL FOR DELETE CONFIRMATION -->
     <div class="modal modal-warning fade in" th:id="modal-warning+${post.id }" >
         <div class="modal-dialog">
             <div class="modal-content">
@@ -56,9 +62,7 @@
             </div>
         </div>
     </div>
-    <!-- End Modal   -->
 </body>
 
 <footer th:replace="/../fragments/header-footer :: footer" />
-
 </html>
