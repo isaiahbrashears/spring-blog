@@ -32,6 +32,8 @@ public class PostController {
     this.tagDao = tagDao;
     }
 
+//    VIEWING POSTS
+
     @GetMapping("/posts")
     public String showIndex(Model vModel){
 
@@ -39,7 +41,6 @@ public class PostController {
 
         return "/posts/index";
     }
-
 
     @GetMapping("/posts/{id}")
     public String showIndividual(@PathVariable long id, Model vModel){
@@ -51,6 +52,8 @@ public class PostController {
     }
 
 
+//    DELETE POSTS
+
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id){
 
@@ -59,6 +62,8 @@ public class PostController {
         return "redirect:/posts";
     }
 
+
+//    EDIT POSTS
 
     @GetMapping("/posts/{id}/edit")
     public String beginEdit(@PathVariable long id, Model vModel, @ModelAttribute String missing){
@@ -77,40 +82,62 @@ public class PostController {
             postDao.editPost(title, body, id);
             return "redirect:/posts/" + id;
         }
-
-
-
     }
 
 
+//    CREATE POSTS
+
     @GetMapping("/posts/create")
-    public String view(Model vModel, @ModelAttribute String missing) {
+    public String view(Model vModel, @ModelAttribute String missing, @ModelAttribute ArrayList<Tag> tagsErr) {
         vModel.addAttribute("post", new Post());
 
         if (missing != null){
             vModel.addAttribute("missing", missing);
+            vModel.addAttribute("tagsErr", tagsErr);
         }
 
+        vModel.addAttribute("tags", tagDao.findAll());
 
         return "posts/create";
     }
 
-
-
     @PostMapping("/posts/create")
-    public String create(@ModelAttribute Post post, Model vModel){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (post.getTitle().isEmpty() || post.getBody().isEmpty()){
+    public String create(@ModelAttribute Post post, Model vModel, @RequestParam(value = "ids", required = false) ArrayList<Long> ids){
+
+
+        if (post.getTitle().isEmpty() || post.getBody().isEmpty() || ids == null){
+            vModel.addAttribute("tagsErr", tagDao.findAll());
             vModel.addAttribute("missing", "Please fill out all forms");
             return "/posts/create";
         }else{
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            ArrayList<Tag> tagsToAdd = new ArrayList<>();
+            List<Tag> allTags = tagDao.findAll();
+            for (Long id : ids) {
+                for (Tag tag: allTags) {
+                    if(tag.getId() == id)
+                        tagsToAdd.add(tag);
+                }
+
+            }
+
             post.setUser(userDao.getOne(user.getId()));
+
+            if (tagsToAdd != null){
+                post.setTags(new ArrayList<>());
+                for (Tag tag: tagsToAdd) {
+                    post.getTags().add(tag);
+                }
+            }
+
             Post savedPost = postDao.save(post);
             emailService.prepareAndSend(savedPost, "New Post", "Congrats, your post has been created.");
             return "redirect:/posts/" +  savedPost.getId();
         }
     }
 
+
+//    TAGS
 
     @GetMapping("/posts/tags/{id}")
     public String searchTag(@PathVariable long id, Model vModel){
@@ -120,12 +147,9 @@ public class PostController {
         for (Tag tag: tagDao.findAll() ) {
             if (tag.getId() == id){
                 vModel.addAttribute("tag", tag);
-                for (Post post : tag.getPosts()) {
-                    posts.add(post);
-                }
+                posts.addAll(tag.getPosts());
             }
         }
-
         vModel.addAttribute("posts", posts);
         return "/posts/tag";
     }

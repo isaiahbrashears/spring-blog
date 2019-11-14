@@ -18,8 +18,14 @@ public class Post {
     private String body;
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Image> images;
-    @ManyToMany(mappedBy = "posts")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = {@JoinColumn(name="post_id")},
+            inverseJoinColumns = {@JoinColumn(name="tag_id")}
+    )
     private List<Tag> tags;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

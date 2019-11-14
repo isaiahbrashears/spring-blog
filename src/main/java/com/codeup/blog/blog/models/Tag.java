@@ -9,26 +9,21 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(nullable = false, columnDefinition = "VARCHAR(60)")
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "post_tag",
-            joinColumns = {@JoinColumn(name="tag_id")},
-            inverseJoinColumns = {@JoinColumn(name="post_id")}
-    )
+    @ManyToMany(mappedBy = "tags")
     private List<Post> posts;
 
     private Tag(){}
 
-    public Tag(int id, String name, List<Post> posts) {
+    public Tag(long id, String name, List<Post> posts) {
         this.id = id;
         this.name = name;
         this.posts = posts;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
