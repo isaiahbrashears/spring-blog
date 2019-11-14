@@ -52,7 +52,7 @@ public class UserController {
 
         }else if (user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getUsername().isEmpty()){
 
-            vModel.addAttribute("missing", "Please fill out all forms there, buddy." );
+            vModel.addAttribute("missing", "Try to fill out all the forms there, buddy." );
             return "/users/sign-up";
 
         }else {
